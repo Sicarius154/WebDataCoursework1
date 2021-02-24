@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from cw1app.views import login_author, logout_author, post_story, get_stories, delete_story
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/login/', login_author),
+    path('api/logout/', logout_author),
+    path('api/poststory/', post_story),
+    path('api/getstories/', get_stories),
+    path('api/deletestory/', delete_story),
 ]
