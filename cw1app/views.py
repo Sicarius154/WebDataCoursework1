@@ -144,10 +144,9 @@ def delete_story(req):
 @csrf_exempt
 def get_stories(req):
     if req.method == "GET":
-        jsonBody = json.loads(req.body)
-        category = jsonBody["story_cat"]
-        region = jsonBody["story_region"]
-        date = jsonBody["story_date"]
+        category = req.GET.get("story_cat")
+        region = req.GET.get("story_region")
+        date = req.GET.get("story_date")
 
         # Filters are lazy, so we can chain them with no performance degredation
         stories = Story.objects.all()
