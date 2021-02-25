@@ -9,7 +9,6 @@ from .forms import LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 import json
-import uuid
 
 storyTableName = "cw1app_story"
 dateTimeFormatDB = "%Y-%m-%d"
@@ -81,7 +80,6 @@ def post_story(req):
         )  # We want to re-evaluate this every time the function is called in case a new day has started
 
         # Extract fields
-        key = uuid.uuid4()
         headline = jsonBody["headline"]
         category = jsonBody["category"]
         region = jsonBody["region"]
@@ -90,7 +88,7 @@ def post_story(req):
 
         # Create story
         story = StoryBody(
-            key, headline, category, region, req.user, dateSubmitted, details
+            "", headline, category, region, req.user, dateSubmitted, details
         )
 
         # Obtain author row
@@ -98,7 +96,6 @@ def post_story(req):
 
         # Insert new row
         Story(
-            key=story.key,
             headline=story.headline,
             category=story.story_cat,
             region=story.story_region,

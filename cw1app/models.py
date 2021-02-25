@@ -12,7 +12,7 @@ class Author(AbstractUser):
 class Story(models.Model):
     class Meta:
         db_table = "Stories"
-    key = models.CharField(primary_key=True, max_length=64, null=False)
+    key = models.AutoField(primary_key=True, null=False)
     headline = models.CharField(max_length=64, null=False)
     category = models.CharField(max_length=10, choices=[('pol', 'politics'), ('art', 'art news'), ('tech', 'tech news'),('trivia', 'trivial news')], null=False)
     region = models.CharField(max_length=10, choices=[('uk', 'united kingdom'), ('eu', 'european union'), ('w', 'world')], null=False, default='w')
