@@ -167,7 +167,7 @@ def get_stories(req):
 
         for story in stories:
             author = story.author.username
-            date = str(story.date.strftime(dateTimeFormat)
+            date = str(story.date.strftime(dateTimeFormat))
 
             storyResults.append(
                 StoryBody(
