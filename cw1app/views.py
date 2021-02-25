@@ -86,7 +86,7 @@ def post_story(req):
         category = jsonBody["category"]
         region = jsonBody["region"]
         details = jsonBody["details"]
-        dateSubmitted = today.strftime(dateTimeFormat)
+        dateSubmitted = today.strftime(dateTimeFormatDB)
 
         # Create story
         story = StoryBody(
