@@ -12,6 +12,7 @@ import json
 import uuid
 
 storyTableName = "cw1app_story"
+dateTimeFormatDB = "%Y-%m-%d"
 dateTimeFormat = "%d/%m/%Y"
 contentTypePlainText = "text/plain"
 contentTypeAppJson = "application/json"
@@ -159,14 +160,14 @@ def get_stories(req):
         if region != "*":
             stories = stories.filter(region=region)
         if date != "*":
-            stories = stories.filter(date__gte=datetime.strptime(date, dateTimeFormat))
+            stories = stories.filter(date__gte=datetime.strptime(date, dateTimeFormat).strftime(dateTimeFormatDB))
 
         # Create story objects from DB rows
         storyResults = []
 
         for story in stories:
             author = story.author.username
-            date = str(story.date)
+            date = str(datetime.strptime(story.date, dateTimeFormatDB).strftime(dateTimeFormat))
 
             storyResults.append(
                 StoryBody(
